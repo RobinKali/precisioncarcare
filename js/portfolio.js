@@ -3,14 +3,18 @@
  */
 
 // Initialize Client
-const sanityClient = window.SanityClient.createClient({
+import { createClient } from 'https://esm.sh/@sanity/client'
+import imageUrlBuilder from 'https://esm.sh/@sanity/image-url'
+
+// Initialize Client
+const sanityClient = createClient({
     projectId: 'vtcyzegl',
     dataset: 'production',
     apiVersion: '2023-01-01',
     useCdn: true,
 });
 
-const builder = window.SanityImageUrl.imageUrlBuilder(sanityClient);
+const builder = imageUrlBuilder(sanityClient);
 
 function urlFor(source) {
     return builder.image(source);
