@@ -28,6 +28,18 @@ function initScrollAnimations() {
         el.style.opacity = '0'; // Prepare for animation
         observer.observe(el);
     });
+
+    /* Text Reveal Observer */
+    const textRevealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.5 });
+
+    const textReveals = document.querySelectorAll('.scroll-text-reveal');
+    textReveals.forEach(el => textRevealObserver.observe(el));
 }
 
 function initMobileMenu() {
